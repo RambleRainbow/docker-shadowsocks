@@ -1,12 +1,15 @@
-FROM alpine:3.5
+FROM mritd/shadowsocks:3.0.6
 
-RUN apk add --update python && \
-    apk add py-pip &&\
-    pip install shadowsocks==2.8.2
 
-ADD ./conf.d /conf.d
-ADD ./templates /templates
-ADD ./entrypoint.sh /entrypoint.sh
+RUN apk upgrade --no-cache &&\
+    apk add --no-cache supervisor
+
+COPY ./conf.d /conf.d
+COPY ./templates /templates
+COPY ./entrypoint.sh /entrypoint.sh
+
+COPY ./supervisor.d /etc/supervisor.d
+
 
 EXPOSE 8000
 
