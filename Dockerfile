@@ -10,6 +10,6 @@ ADD ./entrypoint.sh /entrypoint.sh
 
 EXPOSE 8000
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 
 
