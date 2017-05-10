@@ -6,6 +6,5 @@
   "password": "<%PASSWORD%>", 
   "method": "aes-256-cfb",
   "remarks": "",
-  "auth": false,
   "timeout": 300 
 }
