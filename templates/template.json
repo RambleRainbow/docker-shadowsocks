@@ -2,7 +2,7 @@
   "server": "<%SERVER%>",
   "server_port": 8000,
   "local_address": "0.0.0.0",
-  "local_port": 1080,
+  "local_port": "<%LOCALPORT%>",
   "password": "<%PASSWORD%>",
   "method": "aes-256-cfb",
   "timeout": 300,

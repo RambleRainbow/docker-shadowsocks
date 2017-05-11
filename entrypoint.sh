@@ -5,12 +5,17 @@ CONF_SERVER="/conf.d/server.json"
 CONF_LOCAL="/conf.d/local.json"
 CONF_TUNNEL="/conf.d/tunnel.json"
 CONF_REDIR="/conf.d/redir.json"
+PORT_LOCAL=1080
+PORT_TUNNEL=1081
+PORT_REDIR=1082
+
 
 function makeConf() 
 {
   cp -f $CONF_TEMPLATE $1
   sed -i "s/<%SERVER%>/$2/" $1
   sed -i "s/<%PASSWORD%>/$3/" $1
+  sed -i "s/<%LOCALPORT%>/$4/" $1
 }
 
 function initConf()
@@ -24,7 +29,9 @@ function initConf()
     makeConf  $CONF_SERVER 0.0.0.0 $pwd;
   
     server=`curl www.query-ip.com -s`
-    makeConf $CONF_LOCAL $server $pwd
+    makeConf $CONF_LOCAL $server $pwd $PORT_LOCAL
+    makeConf $CONF_TUNNEL $server $pwd $PORT_TUNNEL
+    makeConf $CONF_REDIR $server $pwd $PORT_REDIR
   fi
 }
 
@@ -64,7 +71,7 @@ function startAs()
   esac
 }
 
-supervisord
+supervisord -c /etc/supervisord.conf
 
 case $1 in
   -m)
