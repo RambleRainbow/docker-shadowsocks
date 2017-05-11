@@ -3,6 +3,8 @@
 CONF_TEMPLATE="/conf.d/template.json"
 CONF_SERVER="/conf.d/server.json"
 CONF_LOCAL="/conf.d/local.json"
+CONF_TUNNEL="/conf.d/tunnel.json"
+CONF_REDIR="/conf.d/redir.json"
 
 function makeConf() 
 {
@@ -34,7 +36,17 @@ function startAsServer
 
 function startAsClient
 {
-  supervisorctl start local
+  if [ -f $CONF_LOCAL ]; then
+    supervisorctl start local
+  fi
+
+  if [ -f $CONF_TUNNEL ]; then
+    supervisorctl start tunnel
+  fi
+
+  if [ -f $CONF_REDIR ]; then
+    supervisorctl start redir
+  fi
 }
 
 function startAs()

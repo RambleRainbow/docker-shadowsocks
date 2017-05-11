@@ -1,10 +1,19 @@
 {
   "server": "<%SERVER%>",
   "server_port": 8000,
-  "local_address" : "0.0.0.0",
-  "local_port" : 1080,
-  "password": "<%PASSWORD%>", 
+  "local_address": "0.0.0.0",
+  "local_port": 1080,
+  "password": "<%PASSWORD%>",
   "method": "aes-256-cfb",
-  "remarks": "",
-  "timeout": 300 
-}
+  "timeout": 300,
+  "fast_open": true,
+  "tunnel_address": "8.8.8.8:53",
+  "mode": "tcp_and_udp", 
+  "port_password": {
+    "8000": "<%PASSWORD%>",
+    "8001": "<%PASSWORD%>",
+    "8002": "<%PASSWORD%>",
+    "8003": "<%PASSWORD%>",
+    "8004": "<%PASSWORD%>"
+  }
+} 
