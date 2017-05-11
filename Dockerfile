@@ -3,7 +3,12 @@ FROM mritd/shadowsocks:3.0.6
 
 RUN apk upgrade --no-cache &&\
     apk add --no-cache supervisor &&\
-    apk add --no-cache curl
+    apk add --no-cache curl &&\
+    apk add --no-cache dnsmasq &&\
+    apk add --no-cache py-pip &&\
+    apk add --no-cache nginx &&\
+    pip install --no-cache-dir https://github.com/JinnLynn/genpac/archive/master.zip
+
 
 COPY ./conf.d /conf.d
 COPY ./templates /templates
