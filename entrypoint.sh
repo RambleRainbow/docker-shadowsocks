@@ -43,17 +43,14 @@ function startAsServer
 
 function startAsClient
 {
-  if [ -f $CONF_LOCAL ]; then
-    supervisorctl start local
-  fi
+  supervisorctl start local
+  supervisorctl start tunnel
+  supervisorctl start redir
 
-  if [ -f $CONF_TUNNEL ]; then
-    supervisorctl start tunnel
-  fi
+  /scripts/gendns.sh
+  supervisorctl start dnsmasq 
 
-  if [ -f $CONF_REDIR ]; then
-    supervisorctl start redir
-  fi
+  crond -c /crontabs 
 }
 
 function startAs()
