@@ -5,6 +5,7 @@ CONF_SERVER="/conf.d/server.json"
 CONF_LOCAL="/conf.d/local.json"
 CONF_TUNNEL="/conf.d/tunnel.json"
 CONF_REDIR="/conf.d/redir.json"
+CONF_MAINCONF="/conf.d/main.conf"
 PORT_LOCAL=1080
 PORT_TUNNEL=1081
 PORT_REDIR=1082
@@ -33,6 +34,11 @@ function initConf()
     makeConf $CONF_TUNNEL $server $pwd $PORT_TUNNEL
     makeConf $CONF_REDIR $server $pwd $PORT_REDIR
   fi
+
+
+  if [ ! -f $CONF_MAINCONF ]; then
+    cp /templates/main.conf $CONF_MAINCONF > /dev/null 2>&1
+  fi
 }
 
 function startAsServer
@@ -47,8 +53,9 @@ function startAsClient
   supervisorctl start tunnel
   supervisorctl start redir
 
-  /scripts/gendns.sh
+  cat /conf.d/main.conf | grep "pachost" | awk '{print $2}' | xargs sh /scripts/gendns.sh
   supervisorctl start dnsmasq 
+  supervisorctl start nginx
 
   crond -c /crontabs 
 }

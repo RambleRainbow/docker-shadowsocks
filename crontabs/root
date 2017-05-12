@@ -1,1 +1,2 @@
-0 4 * * 3  /scripts/gendns.sh && supervisorctl restart dnsmasq
+0 4 * * 3  cat /conf.d/main.conf | grep "pachost" | awk '{print $2}' | xargs sh /scripts/gendns.sh && supervisorctl restart dnsmasq
+#*/1 * * * *  cat /conf.d/main.conf | grep "pachost" | awk '{print $2}' | xargs sh /scripts/gendns.sh && supervisorctl restart dnsmasq
