@@ -26,9 +26,9 @@ $ docker pull warmworm/shadowsocks
 
 #启动docker容器
 ~$ docker run -id --name=ss-server\ 
-              -p 8000:8000/tcp \
-              -p 8000:8000/udp \
-              -v /etc/ss.d:/conf.d \
+              -p 8000:8000/tcp\
+              -p 8000:8000/udp\
+              -v /etc/ss.d:/conf.d\
               warmworm/shadowsocks
 ```
 
