@@ -1,10 +1,10 @@
 #!/bin/sh
 
-CONF_TEMPLATE="/conf.d/template.json"
-CONF_SERVER="/conf.d/server.json"
-CONF_LOCAL="/conf.d/local.json"
-CONF_TUNNEL="/conf.d/tunnel.json"
-CONF_REDIR="/conf.d/redir.json"
+CONF_TEMPLATE="/conf.d/ss.d/template.json"
+CONF_SERVER="/conf.d/ss.d/server.json"
+CONF_LOCAL="/conf.d/ss.d/local.json"
+CONF_TUNNEL="/conf.d/ss.d/tunnel.json"
+CONF_REDIR="/conf.d/ss.d/redir.json"
 CONF_MAINCONF="/conf.d/main.conf"
 PORT_LOCAL=1080
 PORT_TUNNEL=1081
