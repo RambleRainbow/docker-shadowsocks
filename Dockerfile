@@ -18,14 +18,14 @@ COPY ./scripts /scripts
 COPY ./crontabs /crontabs
 
 
-#8000/tcp default server port 
-#1080/tcp socks5 proxy
-#1082/tcp transparent gateway
-#53/udp 
-EXPOSE 8000
-EXPOSE 1080
-EXPOSE 1082
-EXPOSE 53
+#8000     for server: server port 
+#1080/tcp for local : socks5 proxy
+#53/udp   for local : dns server with ipset and gfwlist
+
+EXPOSE 8000/tcp
+EXPOSE 8000/udp
+EXPOSE 1080/tcp
+EXPOSE 53/udp
 
 ENTRYPOINT ["/entrypoint.sh"]
 
