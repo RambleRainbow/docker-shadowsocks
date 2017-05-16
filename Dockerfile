@@ -10,13 +10,14 @@ RUN apk upgrade --no-cache &&\
     pip install --no-cache-dir https://github.com/JinnLynn/genpac/archive/master.zip
 
 
-COPY ./conf.d /conf.d
-COPY ./templates /templates
-COPY ./entrypoint.sh /entrypoint.sh
-COPY ./supervisor.d /etc/supervisor.d
-COPY ./scripts /scripts
-COPY ./crontabs /crontabs
-COPY ./nginx /etc/nginx
+COPY ./files /
+#COPY ./conf.d /conf.d
+#COPY ./templates /templates
+#COPY ./entrypoint.sh /entrypoint.sh
+#COPY ./supervisor.d /etc/supervisor.d
+#COPY ./scripts /scripts
+#COPY ./crontabs /crontabs
+#COPY ./nginx /etc/nginx
 
 #8000     for server: server port 
 
