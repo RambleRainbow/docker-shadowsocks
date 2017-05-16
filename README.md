@@ -45,7 +45,10 @@ $ docker pull warmworm/shadowsocks
 #### step 2. 指定你本机的IP地址（可选步骤）
 注：如果你的自动代理服务要向除本机外的其它电脑使用，才需要执行这个步骤
 ```shell
-~$ sudo /etc/ss.d/init-client.sh
+请直接修改编译 /etc/ss.d/main.conf文件中的pachost字段
+~$ cat /etc/ss.d/main.conf
+pachost 127.0.0.1:1080
+~$
 ```
 
 #### step 3. 启动客户端
