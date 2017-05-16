@@ -1,5 +1,5 @@
 FROM armhf/alpine:3.5
 
-COPY ./armhf /
+COPY ./files /
 
 ENTRYPOINT ["/entrypoint.sh"]
