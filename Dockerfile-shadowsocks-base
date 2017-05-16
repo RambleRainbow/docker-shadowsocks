@@ -2,7 +2,4 @@ FROM armhf/alpine:3.5
 
 COPY ./armhf /
 
-RUN apk update --no-cache
-#    scanelf --needed --nobanner /usr/bin/ss-* | awk '{gsub(/,/,"\nso:",$2);print "so:"$2}' | sort -u | xargs -r apk search | awk -F '-' '{print $1}' | xargs -r apk add --no-cache
-
 ENTRYPOINT ["/entrypoint.sh"]
