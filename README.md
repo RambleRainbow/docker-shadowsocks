@@ -1,8 +1,13 @@
-## docker-shadowsocks
-基于mritd/shadowsocks镜像的Dockerfile
-提供shadowsocks常用功能的整体解决方案
-包括，服务端ss-server功能
-以及客户端的socks5代理(ss-local)、dns污染处理(dnsmasq-pac)、自动代理(gfw autoproxy)
+docker-shadowsocks
+===
+
+基于![mritd/shadowsocks](https://hub.docker.com/r/mritd/shadowsocks)镜像的Dockerfile提供shadowsocks常用功能的整体解决方案
+>服务端
+>>ss-server功能
+>客户端
+>>socks5代理(ss-local)
+>>dns污染处理(dnsmasq-pac)
+>>自动代理(gfw autoproxy)
 
 
 ## 一、安装
