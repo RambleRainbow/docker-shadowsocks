@@ -86,5 +86,4 @@ case $1 in
   ;;
 esac
 
-/bin/sh
-
+/bin/sh -c $*

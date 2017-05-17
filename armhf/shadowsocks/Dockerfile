@@ -1,4 +1,4 @@
-FROM warmworm/shadowsocks_armhf_base:0.0.2
+FROM warmworm/shadowsocks-armhf-base:3.0.6
 
 ENV RUN_DEPD supervisor curl dnsmasq py-pip nginx
 
