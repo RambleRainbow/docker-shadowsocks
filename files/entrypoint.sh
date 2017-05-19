@@ -6,6 +6,10 @@ CONF_LOCAL="/conf.d/ss.d/local.json"
 CONF_TUNNEL="/conf.d/ss.d/tunnel.json"
 CONF_REDIR="/conf.d/ss.d/redir.json"
 CONF_MAINCONF="/conf.d/main.conf"
+
+CONF_DNS="/conf.d/dnsmasq/gfw.conf"
+CONF_PAC="/conf.d/nginx/www/autoproxy.pac"
+
 PORT_LOCAL=1080
 PORT_TUNNEL=1081
 PORT_REDIR=1082
@@ -53,7 +57,9 @@ function startAsClient
   supervisorctl start tunnel
   supervisorctl start redir
 
-  cat /conf.d/main.conf | grep "pachost" | awk '{print $2}' | xargs sh /scripts/gendns.sh
+  if [ ! -f $CONF_PAC ]; then
+    cat /conf.d/main.conf | grep "pachost" | awk '{print $2}' | xargs sh /scripts/gendns.sh
+  fi
   supervisorctl start dnsmasq 
   supervisorctl start nginx
 
