@@ -92,4 +92,4 @@ case $1 in
   ;;
 esac
 
-/bin/sh 
+tail -f /var/log/supervisord.log
