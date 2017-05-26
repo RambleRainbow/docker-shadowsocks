@@ -1,5 +1,6 @@
 #!/bin/sh
 
+SSCONF_HOME="/conf.d/ss"
 CONF_TEMPLATE="/conf.d/ss.d/template.json"
 CONF_SERVER="/conf.d/ss.d/server.json"
 CONF_LOCAL="/conf.d/ss.d/local.json"
@@ -25,6 +26,7 @@ function makeConf()
 
 function initConf()
 {
+  mkdir -p $SSCONF_HOME
   if [ ! -f $CONF_TEMPLATE ]; then
     cp /templates/template.json $CONF_TEMPLATE
   fi
