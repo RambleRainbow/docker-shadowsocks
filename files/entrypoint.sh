@@ -1,15 +1,20 @@
 #!/bin/sh
 
-SSCONF_HOME="/conf.d/ss"
-CONF_TEMPLATE="/conf.d/ss.d/template.json"
-CONF_SERVER="/conf.d/ss.d/server.json"
-CONF_LOCAL="/conf.d/ss.d/local.json"
-CONF_TUNNEL="/conf.d/ss.d/tunnel.json"
-CONF_REDIR="/conf.d/ss.d/redir.json"
-CONF_MAINCONF="/conf.d/main.conf"
+PATH_CONF="/conf.d"
+PATH_SSCONF=$PATH_CONF"/ss.d"
+PATH_DNSCONF=$PATH_CONF"/dnsmasq"
+PATH_NGINXCONF=$PATH_CONF"/nginx/www"
 
-CONF_DNS="/conf.d/dnsmasq/gfw.conf"
-CONF_PAC="/conf.d/nginx/www/autoproxy.pac"
+CONF_TEMPLATE=$PATH_SSCONF"/template.json"
+CONF_SERVER=$PATH_SSCONF"/server.json"
+CONF_LOCAL=$PATH_SSCONF"/local.json"
+CONF_TUNNEL=$PATH_SSCONF"/tunnel.json"
+CONF_REDIR=$PATH_SSCONF"/redir.json"
+
+CONF_MAINCONF=$PATH_CONF"/main.conf"
+
+CONF_DNS=$PATH_DNSCONF"/gfw.conf"
+CONF_PAC=$PATH_NGINXCONF"/autoproxy.pac"
 
 PORT_LOCAL=1080
 PORT_TUNNEL=1081
@@ -24,9 +29,18 @@ function makeConf()
   sed -i "s/<%LOCALPORT%>/$4/" $1
 }
 
+function initPath()
+{
+    mkdir -p PATH_CONF
+    mkdir -p PATH_SSCONF
+    mkdir -p PATH_DNSCONF
+    mkdir -p PATH_NGINXCONF
+}
+
 function initConf()
 {
-  mkdir -p $SSCONF_HOME
+  initPath;
+  
   if [ ! -f $CONF_TEMPLATE ]; then
     cp /templates/template.json $CONF_TEMPLATE
   fi
@@ -60,7 +74,7 @@ function startAsClient
   supervisorctl start redir
 
   if [ ! -f $CONF_PAC ]; then
-    cat /conf.d/main.conf | grep "pachost" | awk '{print $2}' | xargs sh /scripts/gendns.sh
+    cat ${PATH_CONF}/main.conf | grep "pachost" | awk '{print $2}' | xargs sh /scripts/gendns.sh
   fi
   supervisorctl start dnsmasq 
   supervisorctl start nginx
