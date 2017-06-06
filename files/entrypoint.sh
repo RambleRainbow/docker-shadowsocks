@@ -31,10 +31,10 @@ function makeConf()
 
 function initPath()
 {
-    mkdir -p PATH_CONF
-    mkdir -p PATH_SSCONF
-    mkdir -p PATH_DNSCONF
-    mkdir -p PATH_NGINXCONF
+    mkdir -p $PATH_CONF
+    mkdir -p $PATH_SSCONF
+    mkdir -p $PATH_DNSCONF
+    mkdir -p $PATH_NGINXCONF
 }
 
 function initConf()
